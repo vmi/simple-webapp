@@ -1,6 +1,8 @@
 package model
 
 import (
+    "fmt"
+
     "github.com/jinzhu/gorm"
     _ "github.com/jinzhu/gorm/dialects/sqlite"
 )
@@ -11,7 +13,7 @@ func init() {
     var err error
     db, err = gorm.Open("sqlite3", "db/sample.db")
     if err != nil {
-      panic("failed to connect database")
+        panic(fmt.Sprintf("failed to connect database: %v", err))
     }
     db.AutoMigrate(&User{})
     db.AutoMigrate(&Todo{})
